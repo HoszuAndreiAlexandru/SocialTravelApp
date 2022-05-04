@@ -10,7 +10,7 @@ public class Welcome extends FragmentActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
+        //coment pt diana
         setContentView(R.layout.main_page);
     }
 }
