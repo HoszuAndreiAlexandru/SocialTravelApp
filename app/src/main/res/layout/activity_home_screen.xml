@@ -8,13 +8,23 @@
 
     <TextView
         android:id="@+id/status"
-        android:layout_width="161dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="152dp"
+        android:layout_width="205dp"
+        android:layout_height="191dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="16dp"
         android:text="Welcome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Welcome" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="51dp"
+        android:layout_height="48dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

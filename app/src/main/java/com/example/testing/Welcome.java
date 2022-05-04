@@ -42,11 +42,11 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
         if(account != null)
         {
             Intent intent = new Intent(this, HomeScreen.class);
-            System.out.println("da1");
+            //System.out.println("da1");
             intent.putExtra("user", account);
-            System.out.println("da2");
+            //System.out.println("da2");
             startActivity(intent);
-            System.out.println("da3");
+            //System.out.println("da3");
         }
     }
 
