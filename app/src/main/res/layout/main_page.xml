@@ -41,7 +41,7 @@
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lawton_cook_m0wptz8vypw_unsplash_1"
+        android:src="@drawable/lawton_cook_m0wptz8vypw_unsplash_1"
         tools:srcCompat="@drawable/lawton_cook_m0wptz8vypw_unsplash_1" />
 
     <com.google.android.gms.common.SignInButton
