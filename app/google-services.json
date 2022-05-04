@@ -1,33 +1,42 @@
 {
   "project_info": {
-    "project_number": "443496478450",
-    "project_id": "testing-1651686209872",
-    "storage_bucket": "testing-1651686209872.appspot.com"
+    "project_number": "650309870763",
+    "firebase_url": "https://travellio-6a1d4-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "travellio-6a1d4",
+    "storage_bucket": "travellio-6a1d4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:443496478450:android:ffa3e40974fd8fe59a026b",
+        "mobilesdk_app_id": "1:650309870763:android:076795d1af036a6e35c3ee",
         "android_client_info": {
           "package_name": "com.example.testing"
         }
       },
       "oauth_client": [
         {
-          "client_id": "443496478450-3nj1kpon93r73cn0ej4k6kreemfna896.apps.googleusercontent.com",
+          "client_id": "650309870763-ou9velg341s4v18l7vs40qsm1lf25rhu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.testing",
+            "certificate_hash": "c59e50264c34bf52a18acd87ba2fdd7097322ca4"
+          }
+        },
+        {
+          "client_id": "650309870763-2j395sd9oqtrgpb72qkh0gr9o6la5jkq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA25CvTaVXfN5eBpbndAQC-AY8Urj1d9Os"
+          "current_key": "AIzaSyB9D75NyyojMB5pUhM1C6PWi8UkGejOYJ4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "443496478450-3nj1kpon93r73cn0ej4k6kreemfna896.apps.googleusercontent.com",
+              "client_id": "650309870763-2j395sd9oqtrgpb72qkh0gr9o6la5jkq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

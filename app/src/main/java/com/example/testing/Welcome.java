@@ -7,10 +7,12 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.auth.api.signin.*;
 import android.util.*;
+import com.google.android.gms.common.SignInButton;
+import com.google.firebase.database.*;
 
 public class Welcome extends FragmentActivity implements android.view.View.OnClickListener
 {
-    private com.google.android.gms.common.SignInButton button;
+    private SignInButton button;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity";
@@ -37,7 +39,14 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
     @Override
     protected void onStart()
     {
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://travellio-6a1d4-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("cplm");
+
+        myRef.setValue("salutare bază de date!");
+
         super.onStart();
+
+        /*
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null)
         {
@@ -48,6 +57,8 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
             startActivity(intent);
             System.out.println("da3");
         }
+        */
+
     }
 
     @Override
@@ -90,6 +101,8 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
 
     @Override
     public void onClick(android.view.View v) {
+
+
         switch (v.getId()) {
             case R.id.sign_in_button:
                 signIn();
@@ -103,5 +116,7 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
                 break;
                 */
         }
+
+
     }
 }
