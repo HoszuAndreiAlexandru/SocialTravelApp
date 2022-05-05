@@ -69,11 +69,13 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, android.content.Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN)
+        {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             //
@@ -82,8 +84,10 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
         }
     }
 
-    private void handleSignInResult(com.google.android.gms.tasks.Task<GoogleSignInAccount> completedTask) {
-        try {
+    private void handleSignInResult(com.google.android.gms.tasks.Task<GoogleSignInAccount> completedTask)
+    {
+        try
+        {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
@@ -94,7 +98,9 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
 
             startActivity(intent);
 
-        } catch (ApiException e) {
+        }
+        catch (ApiException e)
+        {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
@@ -103,25 +109,15 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
         }
     }
 
-    private void signIn() {
+    private void signIn()
+    {
         android.content.Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     @Override
-    public void onClick(android.view.View v) {
-        switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
-                break;
-                /*
-            case R.id.sign_out_button:
-                signOut();
-                break;
-            case R.id.disconnect_button:
-                revokeAccess();
-                break;
-                */
-        }
+    public void onClick(android.view.View v)
+    {
+        signIn();
     }
 }

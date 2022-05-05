@@ -5,6 +5,7 @@ import androidx.appcompat.app.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.widget.*;
 import android.os.Bundle;
 
@@ -21,11 +22,13 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
     private TextView mStatusTextView;
     private ImageView profileImage;
     private Button logoutButton;
+    private Button mapButton;
     private GoogleSignInAccount account = null;
     //private GoogleSignInClient googleAPI = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         mStatusTextView = findViewById(R.id.status);
@@ -36,6 +39,9 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
             account = (GoogleSignInAccount)extras.get("user");
             //googleAPI = (GoogleSignInClient) getIntent().getSerializableExtra("googleAPI");
         }
+
+        mapButton = findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(this);
 
         logoutButton = findViewById(R.id.log_out_button);
         mStatusTextView.setText("Welcome, " + account.getDisplayName());
@@ -64,10 +70,23 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
         startActivity(intent);
     }
 
-    public void onClick(android.view.View v) {
+    private void openMap()
+    {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("user", account);
+        startActivity(intent);
+    }
+
+    public void onClick(android.view.View v)
+    {
+        Log.i("da1", "da1");
         switch (v.getId()) {
             case R.id.log_out_button:
                 logOut();
+                break;
+            case R.id.mapButton:
+                Log.i("da1", "da2");
+                openMap();
                 break;
         }
     }
