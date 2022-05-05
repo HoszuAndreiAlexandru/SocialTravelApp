@@ -13,6 +13,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.testing.databinding.ActivityMapsBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.*;
 
@@ -40,37 +42,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             account = (GoogleSignInAccount)extras.get("user");
-            //googleAPI = (GoogleSignInClient) getIntent().getSerializableExtra("googleAPI");
 
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://travellio-6a1d4-default-rtdb.europe-west1.firebasedatabase.app/");
             DatabaseReference myRef = database.getReference("nicusor");
-
             myRef = myRef.child("savedLocations");
 
-            myRef.addValueEventListener(new ValueEventListener()
+            Task<DataSnapshot> t;
+            String key = "location";
+            boolean CONTINUE = true;
+            int i = 1;
+
+            while(CONTINUE)
             {
-                @Override
-                public void onDataChange(DataSnapshot snapshot)
+                t = myRef.child(key + ("" + i)).get();
+
+                while(!t.isSuccessful())
                 {
-                    pins.clear();
-                    for (DataSnapshot postSnapshot: snapshot.getChildren())
-                    {
-                        //apPin pin = postSnapshot.getValue(mapPin.class);
-                        //Log.i("da", postSnapshot.getValue(mapPin.class).getPinName());
-                        Log.i("da", postSnapshot.toString());
-                        //pins.add(pin., pin);
-
-                        // here you can access to name property like university.name
-
-                    }
                 }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError)
+                if(!t.getResult().exists())
                 {
-                    System.out.println("The read failed: " + databaseError.getMessage());
+                    CONTINUE = false;
+                    Log.i("FIREBASE DA", "nu");
                 }
-            });
+                else
+                {
+                    //Log.i("FIREBASE DA", t.getResult().toString() + "     " + key + ("" + i));
+                    String comment = (String)t.getResult().child("comment").getValue();
+                    long givenReview = (long)t.getResult().child("givenReview").getValue();
+                    double latitude = (double)t.getResult().child("latitude").getValue();
+                    double longitude = (double)t.getResult().child("longitude").getValue();
+                    //Log.i("FIREBASE DA ", comment);
+                    pins.put(key + ("" + i), new mapPin(key + ("" + i), latitude, longitude, givenReview, comment));
+                    i++;
+                }
+            }
+
+            for(String cheie: pins.keySet())
+            {
+                Log.i("", "");
+                Log.i("", "");
+                Log.i(cheie, pins.get(cheie).getLat() + " " + pins.get(cheie).getLon());
+                Log.i("", "");
+                Log.i("", "");
+            }
         }
     }
 

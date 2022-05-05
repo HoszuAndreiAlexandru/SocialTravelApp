@@ -3,9 +3,9 @@ package com.example.testing;
 public class mapPin
 {
     private String pinName;
-    private float lat;
-    private float lon;
-    private int reviewNote;
+    private double lat;
+    private double lon;
+    private long reviewNote;
     private String reviewText;
 
     public mapPin()
@@ -17,7 +17,7 @@ public class mapPin
         reviewText = "";
     }
 
-    public mapPin(String name, float lat, float lon, int note, String text)
+    public mapPin(String name, double lat, double lon, long note, String text)
     {
         this.pinName = name;
         this.lat = lat;
@@ -36,32 +36,32 @@ public class mapPin
         this.pinName = pinName;
     }
 
-    public float getLat()
+    public double getLat()
     {
         return lat;
     }
 
-    public void setLat(float lat)
+    public void setLat(double lat)
     {
         this.lat = lat;
     }
 
-    public float getLon()
+    public double getLon()
     {
         return lon;
     }
 
-    public void setLon(float lon)
+    public void setLon(double lon)
     {
         this.lon = lon;
     }
 
-    public int getReviewNote()
+    public long getReviewNote()
     {
         return reviewNote;
     }
 
-    public void setReviewNote(int reviewNote)
+    public void setReviewNote(long reviewNote)
     {
         this.reviewNote = reviewNote;
     }

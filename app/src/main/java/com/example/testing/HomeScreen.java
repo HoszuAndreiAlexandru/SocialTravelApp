@@ -79,13 +79,13 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
 
     public void onClick(android.view.View v)
     {
-        Log.i("da1", "da1");
+        //Log.i("da1", "da1");
         switch (v.getId()) {
             case R.id.log_out_button:
                 logOut();
                 break;
             case R.id.mapButton:
-                Log.i("da1", "da2");
+                //Log.i("da1", "da2");
                 openMap();
                 break;
         }
