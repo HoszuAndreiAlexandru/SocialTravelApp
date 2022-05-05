@@ -36,7 +36,6 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
                 .build();
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         button = findViewById(R.id.sign_in_button);
         button.setOnClickListener(this);
 
