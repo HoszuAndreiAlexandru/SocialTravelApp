@@ -6,12 +6,19 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.auth.api.signin.*;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import android.os.Parcelable;
 import android.util.*;
 
-public class Welcome extends FragmentActivity implements android.view.View.OnClickListener
+import java.io.Serializable;
+
+public class Welcome extends FragmentActivity implements android.view.View.OnClickListener, Serializable
 {
     private com.google.android.gms.common.SignInButton button;
     private GoogleSignInClient mGoogleSignInClient;
+    private static GoogleSignInOptions gso;
     private static final int RC_SIGN_IN = 9001;
     private static final String TAG = "SignInActivity";
 
@@ -32,21 +39,33 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
 
         button = findViewById(R.id.sign_in_button);
         button.setOnClickListener(this);
+
     }
 
     @Override
     protected void onStart()
     {
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://travellio-6a1d4-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("cplm1");
+
+        myRef.setValue("salutare bază de date!");
+
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null)
         {
-            Intent intent = new Intent(this, HomeScreen.class);
-            //System.out.println("da1");
-            intent.putExtra("user", account);
-            //System.out.println("da2");
-            startActivity(intent);
-            //System.out.println("da3");
+            Bundle extras = getIntent().getExtras();
+            if(extras != null && extras.get("logout").equals("true"))
+            {
+                mGoogleSignInClient.signOut();
+            }
+            else
+            {
+                Intent intent = new Intent(this, HomeScreen.class);
+                //intent.putExtra("googleAPI", (Serializable) mGoogleSignInClient);
+                intent.putExtra("user", account);
+                startActivity(intent);
+            }
         }
     }
 
@@ -80,6 +99,7 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            //Log.w(TAG, e.getStatus().toString());
             //updateUI(null);
         }
     }
