@@ -26,6 +26,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private GoogleSignInAccount account = null;
     private HashMap<String, mapPin> pins = new HashMap<>();
+    private firebaseConnection fb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

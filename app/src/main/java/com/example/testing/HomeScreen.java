@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Stream;
 import java.net.*;
@@ -24,6 +25,8 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
     private Button logoutButton;
     private Button mapButton;
     private GoogleSignInAccount account = null;
+    private firebaseConnection fb;
+    private ArrayList<mapPin> mapPins;
     //private GoogleSignInClient googleAPI = null;
 
     @Override
@@ -34,11 +37,17 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
         mStatusTextView = findViewById(R.id.status);
 
         Bundle extras = getIntent().getExtras();
-        account = null;
-        if (extras != null) {
+        if (extras != null)
+        {
             account = (GoogleSignInAccount)extras.get("user");
             //googleAPI = (GoogleSignInClient) getIntent().getSerializableExtra("googleAPI");
         }
+
+        //singleton firebase connection
+        fb = firebaseConnection.getInstance();
+        //firebaseConnection.connectWith(account.getEmail());
+        firebaseConnection.connectWith("nicusor");
+        mapPins = firebaseConnection.getUserLocations();
 
         mapButton = findViewById(R.id.mapButton);
         mapButton.setOnClickListener(this);
@@ -79,13 +88,11 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
 
     public void onClick(android.view.View v)
     {
-        //Log.i("da1", "da1");
         switch (v.getId()) {
             case R.id.log_out_button:
                 logOut();
                 break;
             case R.id.mapButton:
-                //Log.i("da1", "da2");
                 openMap();
                 break;
         }
