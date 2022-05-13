@@ -19,14 +19,20 @@ public class firebaseConnection
 
     public static void connectWith(String username)
     {
+        System.out.println("connecting...");
+        user = database.getReference(username);
         try
         {
-            user = database.getReference(username);
+            database.getReference(username).get().getResult().getChildren();
         }
         catch (Exception e)
         {
-            Log.w("user needs to be", "CREATED");
-
+            Log.w("user needs to be", "CREATED " + username);
+            //database.getReference().child("username").setValue(username);
+            //user = database.getReference("username");
+            database.getReference(username).child("friends").setValue("");
+            database.getReference(username).child("savedLocations").setValue("");
+            database.getReference(username).child("settings").setValue("");
         }
     }
 

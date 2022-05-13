@@ -43,7 +43,9 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
 
         //singleton firebase connection
         fb = firebaseConnection.getInstance();
-        firebaseConnection.connectWith(account.getEmail());
+        firebaseConnection.connectWith(account.getId());
+        //Log.w("user needs to be", "CREATED " + account.getId());
+        //firebaseConnection.connectWith("nicusor");
         mapPins = firebaseConnection.getUserLocations();
 
         for(mapPin pin: mapPins)

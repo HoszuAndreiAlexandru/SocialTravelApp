@@ -64,7 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(!t.getResult().exists())
                 {
                     CONTINUE = false;
-                    Log.i("FIREBASE DA", "nu");
+                    //Log.i("FIREBASE DA", "nu");
                 }
                 else
                 {
@@ -81,11 +81,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             for(String cheie: pins.keySet())
             {
-                Log.i("", "");
-                Log.i("", "");
-                Log.i(cheie, pins.get(cheie).getLat() + " " + pins.get(cheie).getLon());
-                Log.i("", "");
-                Log.i("", "");
+                //Log.i("", "");
+                //Log.i("", "");
+                //Log.i(cheie, pins.get(cheie).getLat() + " " + pins.get(cheie).getLon());
+                //Log.i("", "");
+                //Log.i("", "");
             }
         }
     }

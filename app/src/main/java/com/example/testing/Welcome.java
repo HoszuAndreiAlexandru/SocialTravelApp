@@ -44,11 +44,6 @@ public class Welcome extends FragmentActivity implements android.view.View.OnCli
     @Override
     protected void onStart()
     {
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://travellio-6a1d4-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("cplm1");
-
-        myRef.setValue("salutare bază de date!");
-
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null)
