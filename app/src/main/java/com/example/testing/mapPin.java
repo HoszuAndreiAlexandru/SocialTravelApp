@@ -75,4 +75,9 @@ public class mapPin
     {
         this.reviewText = reviewText;
     }
+
+    //public String toString()
+    //{
+        //return ;
+    //}
 }

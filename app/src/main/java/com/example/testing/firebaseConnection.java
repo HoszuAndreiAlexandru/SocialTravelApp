@@ -6,7 +6,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -15,43 +14,46 @@ public class firebaseConnection
     private static final firebaseConnection connectionInstance = new firebaseConnection();
     private static FirebaseDatabase database = FirebaseDatabase.getInstance("https://travellio-6a1d4-default-rtdb.europe-west1.firebasedatabase.app/");
     private static DatabaseReference user;
-    private static DatabaseReference userFriends;
-    private static DatabaseReference userSettings;
 
     private firebaseConnection(){}
 
     public static boolean connectWith(String username)
     {
+        try
+        {
+            user = database.getReference(username);
+            //database.
+            return true;
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception : " + e);
 
-        user = database.getReference(username);
-        //userLocations = user.child("savedlocations");
-        userFriends = user.child("friends");
-        userSettings = user.child("settings");
-        return true;
+
+        }
+        return false;
     }
 
     public static ArrayList<mapPin> getUserLocations()
     {
         DatabaseReference userLocations = user.child("savedLocations");
         ArrayList<mapPin> locations = new ArrayList<>();
-
         Task<DataSnapshot> t = userLocations.get();
 
         //wait for task to complete the data fetching from firebase
         while(!t.isSuccessful()){}
 
-        String result = t.getResult().getValue().toString();
-        System.out.println(t.getResult());
-        //result = result.substring(1, result.length() - 1);
+        Iterable<DataSnapshot> locatii = t.getResult().getChildren();
 
-        //String results[] = result.split(", location");
-        //result.
-
-        //for(int i = 0; i < results.length; i++)
-        //{
-            //System.out.println(results[i]);
-            //locations.add(new mapPin());
-        //}
+        for(DataSnapshot location: locatii)
+        {
+            String locationName = location.getKey();
+            double latitude = Double.parseDouble(location.child("latitude").getValue().toString());
+            double longitude = Double.parseDouble(location.child("longitude").getValue().toString());
+            int reviewNote = Integer.parseInt(location.child("givenReview").getValue().toString());
+            String comment = location.child("comment").getValue().toString();
+            locations.add(new mapPin(locationName, latitude, longitude, reviewNote, comment));
+        }
 
         return locations;
     }
@@ -60,15 +62,4 @@ public class firebaseConnection
     {
         return connectionInstance;
     }
-    /*
-    private firebaseConnection(String username)
-    {
-        //username is user's email
-        user = database.getReference(username);
-        userLocations = user.child("savedlocations");
-        userFriends = user.child("friends");
-        userSettings = user.child("settings");
-    }
-    */
-
 }

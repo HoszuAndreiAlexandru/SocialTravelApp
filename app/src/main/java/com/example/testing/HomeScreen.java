@@ -27,7 +27,6 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
     private GoogleSignInAccount account = null;
     private firebaseConnection fb;
     private ArrayList<mapPin> mapPins;
-    //private GoogleSignInClient googleAPI = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,14 +39,17 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
         if (extras != null)
         {
             account = (GoogleSignInAccount)extras.get("user");
-            //googleAPI = (GoogleSignInClient) getIntent().getSerializableExtra("googleAPI");
         }
 
         //singleton firebase connection
         fb = firebaseConnection.getInstance();
-        //firebaseConnection.connectWith(account.getEmail());
-        firebaseConnection.connectWith("nicusor");
+        firebaseConnection.connectWith(account.getEmail());
         mapPins = firebaseConnection.getUserLocations();
+
+        for(mapPin pin: mapPins)
+        {
+            Log.w("Pins: ", pin.toString());
+        }
 
         mapButton = findViewById(R.id.mapButton);
         mapButton.setOnClickListener(this);
@@ -57,19 +59,6 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
         ImageView userImage = findViewById(R.id.profileImage);
 
         logoutButton.setOnClickListener(this);
-
-        try
-        {
-            //InputStream in = new URL(account.getPhotoUrl().toString()).openStream();
-
-            //userImage.setImageBitmap(BitmapFactory.decodeStream(in));
-
-            //System.out.println("URL is: " + account.getPhotoUrl());
-        }
-        catch (Exception e)
-        {
-            System.out.println(e);
-        }
     }
 
     private void logOut()
