@@ -19,17 +19,11 @@ public class firebaseConnection
 
     public static boolean connectWith(String username)
     {
-        try
+        if(database.getReference(username))
         {
             user = database.getReference(username);
-            //database.
+
             return true;
-        }
-        catch (Exception e)
-        {
-            System.out.println("Exception : " + e);
-
-
         }
         return false;
     }
