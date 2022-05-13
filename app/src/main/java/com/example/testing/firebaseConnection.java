@@ -17,15 +17,17 @@ public class firebaseConnection
 
     private firebaseConnection(){}
 
-    public static boolean connectWith(String username)
+    public static void connectWith(String username)
     {
-        if(database.getReference(username))
+        try
         {
             user = database.getReference(username);
-
-            return true;
         }
-        return false;
+        catch (Exception e)
+        {
+            Log.w("user needs to be", "CREATED");
+
+        }
     }
 
     public static ArrayList<mapPin> getUserLocations()
