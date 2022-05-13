@@ -60,6 +60,11 @@ public class firebaseConnection
         return locations;
     }
 
+    public static void addUserLocation(mapPin pin)
+    {
+        //TODO
+    }
+
     public static firebaseConnection getInstance()
     {
         return connectionInstance;
