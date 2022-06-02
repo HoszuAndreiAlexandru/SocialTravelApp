@@ -8,9 +8,47 @@
     tools:context=".HomeScreen">
 
     <TextView
+        android:id="@+id/question4"
+        android:layout_width="266dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="156dp"
+        android:text="Or explore your saved places"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchbar"
+        tools:text="Or explore your saved places" />
+
+    <TextView
+        android:id="@+id/question3"
+        android:layout_width="252dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="28dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchbar"
+        tools:text="Check your friend's maps!" />
+
+    <TextView
+        android:id="@+id/question2"
+        android:layout_width="191dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="8dp"
+        android:text="your next trip?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question"
+        tools:text="your next trip?" />
+
+    <TextView
         android:id="@+id/status"
-        android:layout_width="205dp"
-        android:layout_height="191dp"
+        android:layout_width="199dp"
+        android:layout_height="33dp"
         android:layout_marginStart="108dp"
         android:layout_marginTop="16dp"
         android:text="Welcome"
@@ -18,9 +56,21 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Welcome" />
 
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="191dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="56dp"
+        android:text="Wanna plan"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status"
+        tools:text="Wanna plan" />
+
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="51dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher_foreground"
@@ -32,22 +82,34 @@
         android:id="@+id/log_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginStart="292dp"
         android:text="Log out"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status"
         tools:text="Log out" />
 
     <Button
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="108dp"
         android:text="Your map"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status"
         tools:text="Your map" />
+
+    <EditText
+        android:id="@+id/searchbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Search place"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

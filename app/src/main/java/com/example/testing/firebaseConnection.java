@@ -1,5 +1,6 @@
 package com.example.testing;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.google.android.gms.tasks.Task;
@@ -20,10 +21,47 @@ public class firebaseConnection
     public static void connectWith(String username)
     {
         System.out.println("connecting...");
-        user = database.getReference(username);
+        user = database.getReference("username");
         try
         {
-            database.getReference(username).get().getResult().getChildren();
+            //user = database.getReference("cevaceva");
+            /*
+            Task<DataSnapshot> chestie = user.get();
+
+            while(!chestie.isSuccessful())
+            {
+                System.out.println("Nu a iesit schema, sarakie");
+            }
+
+            DataSnapshot snapshot = chestie.getResult();
+            if(snapshot.getValue() == null)
+            {
+                System.out.println("nu exista");
+            }
+            else
+            {
+                System.out.println("cumva exista");
+            }
+            */
+            //database.getReference(username).get().getResult().getChildren();
+            //database.getReference(username).child("friends");
+            /*
+            System.out.println("DA1");
+            Task<DataSnapshot> XD = ;
+            while(XD.isSuccessful() == false)
+            {
+                System.out.println("waiting");
+            }
+            DataSnapshot xd = XD.getResult();
+            System.out.println("DA2");
+            if(xd.exists())
+            {
+                System.out.println("");
+                System.out.println("DA3");
+                System.out.println("");
+            }
+            */
+            System.out.println("successssss");
         }
         catch (Exception e)
         {
@@ -40,6 +78,7 @@ public class firebaseConnection
     {
         DatabaseReference userLocations = user.child("savedLocations");
         ArrayList<mapPin> locations = new ArrayList<>();
+        /*
         Task<DataSnapshot> t = userLocations.get();
 
         //wait for task to complete the data fetching from firebase
@@ -56,13 +95,21 @@ public class firebaseConnection
             String comment = location.child("comment").getValue().toString();
             locations.add(new mapPin(locationName, latitude, longitude, reviewNote, comment));
         }
-
+        */
         return locations;
     }
 
     public static void addUserLocation(mapPin pin)
     {
         //TODO
+
+        user.child("savedLocations").child(pin.getPinName()).child("comment").setValue(pin.getReviewText());
+        user.child("savedLocations").child(pin.getPinName()).child("givenReview").setValue(pin.getReviewNote());
+        user.child("savedLocations").child(pin.getPinName()).child("latitude").setValue(pin.getLat());
+        user.child("savedLocations").child(pin.getPinName()).child("longitude").setValue(pin.getLon());
+        System.out.println("");
+        System.out.println("added pin!!!");
+        System.out.println("");
     }
 
     public static firebaseConnection getInstance()

@@ -42,17 +42,29 @@ public class HomeScreen extends Activity implements android.view.View.OnClickLis
         }
 
         //singleton firebase connection
+
         fb = firebaseConnection.getInstance();
         firebaseConnection.connectWith(account.getId());
         //Log.w("user needs to be", "CREATED " + account.getId());
         //firebaseConnection.connectWith("nicusor");
         mapPins = firebaseConnection.getUserLocations();
+        /*
+        mapPin p = new mapPin();
+
+        p.setPinName("locatiadracului");
+        p.setLat(1);
+        p.setLon(2);
+        p.setReviewNote(50);
+        p.setReviewText("best place evar");
+
+        //firebaseConnection.addUserLocation(p);
+
 
         for(mapPin pin: mapPins)
         {
             Log.w("Pins: ", pin.toString());
         }
-
+        */
         mapButton = findViewById(R.id.mapButton);
         mapButton.setOnClickListener(this);
 
